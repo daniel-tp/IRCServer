@@ -6,7 +6,6 @@
 # Reference: https://intellij-support.jetbrains.com/hc/en-us/articles/206544839
 
 # User-specific stuff:
-.idea/**/workspace.xml
 .idea/**/tasks.xml
 .idea/dictionaries
 
@@ -19,9 +18,6 @@
 .idea/**/dynamic.xml
 .idea/**/uiDesigner.xml
 
-# Gradle:
-.idea/**/gradle.xml
-.idea/**/libraries
 
 # CMake
 cmake-build-debug/
@@ -62,10 +58,6 @@ fabric.properties
 
 # Sonarlint plugin
 .idea/sonarlint
-
-### Java ###
-# Compiled class file
-*.class
 
 # Log file
 *.log
@@ -136,3 +128,5 @@ gradle-app.setting
 # gradle/wrapper/gradle-wrapper.properties
 
 # End of https://www.gitignore.io/api/java,gradle,intellij,sublimetext
+.idea/
+src/test/
