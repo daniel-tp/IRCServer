@@ -32,6 +32,7 @@ public class IRCDaemon {
             try(OutputStream ircConf = new FileOutputStream("irc.conf")){
 
                 config.setProperty("servername", "testServer");
+                config.store(ircConf, null);
             }catch (Exception e){
                 e.printStackTrace();
             }

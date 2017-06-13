@@ -15,16 +15,15 @@ public class User {
     }
     public void sendMsg(String strm){
 
-}
+    }
     public void sendMsg(Message m){
-
+        conn.channel().writeAndFlush(m);
     }
     public void sendMsg(Reply rep){
-        conn.channel().writeAndFlush(rep.getMessage());
-
+        sendMsg(new Message(rep.ID, rep.getMessage()));
     }
     public void sendMsg(Reply rep, Object... input){
-        conn.channel().writeAndFlush(rep.getMessage(input));
+        sendMsg(new Message(rep.ID, rep.getMessage(input)));
 
     }
     public void setNickname(String nick){

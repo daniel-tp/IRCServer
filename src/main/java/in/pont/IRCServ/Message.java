@@ -32,6 +32,9 @@ public class Message {
             logger.debug("Message received but not parsed: {}", message);
         }
     }
+    public Message(int type, String... params){
+        this(String.valueOf(type), params);
+    }
     public Message(String type, String... params){
         this.prefix = ":"+IRCDaemon.config.getProperty("serverName");
         this.type = type;
