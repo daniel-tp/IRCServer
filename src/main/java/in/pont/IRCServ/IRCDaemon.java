@@ -29,7 +29,7 @@ public class IRCDaemon {
     public static Properties loadConfig(){
         Properties config = new Properties();
         if(!new File("irc.conf").exists()){
-            try(OutputStream ircConf = new FileOutputStream("config.properties")){
+            try(OutputStream ircConf = new FileOutputStream("irc.conf")){
 
                 config.setProperty("servername", "testServer");
             }catch (Exception e){
