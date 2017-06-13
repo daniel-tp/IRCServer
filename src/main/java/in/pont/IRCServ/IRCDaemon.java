@@ -3,10 +3,15 @@ import in.pont.IRCServ.cmd.CmdNick;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.*;
+import java.util.Properties;
+
 public class IRCDaemon {
+    public static Properties config;
     Command[] CmdList = {new CmdNick()};
     public static void main(String[] args) throws Exception {
         final Logger logger = LoggerFactory.getLogger(IRCDaemon.class);
+        config = loadConfig();
         int port;
         if (args.length > 0) {
             port = Integer.parseInt(args[0]);
@@ -20,5 +25,23 @@ public class IRCDaemon {
     }
     public void loadCommands(){
 
+    }
+    public static Properties loadConfig(){
+        Properties config = new Properties();
+        if(!new File("irc.conf").exists()){
+            try(OutputStream ircConf = new FileOutputStream("config.properties")){
+
+                config.setProperty("servername", "testServer");
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+        }else {
+            try (InputStream confFile = new FileInputStream("irc.conf")) {
+                config.load(confFile);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return config;
     }
 }

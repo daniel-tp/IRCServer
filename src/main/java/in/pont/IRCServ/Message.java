@@ -9,9 +9,6 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-/**
- * Created by Daniel on 02/06/2017.
- */
 public class Message {
     final Logger logger = LoggerFactory.getLogger(Message.class);
     String prefix;
@@ -36,7 +33,7 @@ public class Message {
         }
     }
     public Message(String type, String... params){
-        this.prefix = ":TestServer";
+        this.prefix = ":"+IRCDaemon.config.getProperty("serverName");
         this.type = type;
         this.params = Arrays.asList(params);
 
