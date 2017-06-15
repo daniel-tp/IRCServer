@@ -20,6 +20,10 @@ public class CmdNick extends Command {
             user.sendMsg(Reply.ERR_NONICKNAMEGIVEN);
             return null;
         }
+        if(params[0].length()>32){
+            user.sendMsg(Reply.ERR_ERRONEUSNICKNAME, params[0]);
+            return null;
+        }
         HashMap<String, Object> prms = new HashMap<>();
         prms.put("nickname", params[0]);
         return prms;

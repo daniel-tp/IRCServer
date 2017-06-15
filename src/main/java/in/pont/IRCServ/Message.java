@@ -20,7 +20,7 @@ public class Message {
         Matcher m = p.matcher(message);
         if(m.find()){
             prefix = m.group(1);
-            type = m.group(3);
+            type = m.group(3).toUpperCase();
             if(m.group(4)!= null) {
                 params.addAll(Arrays.asList(m.group(4).split(" ")));
             }
@@ -36,7 +36,7 @@ public class Message {
         this(String.valueOf(type), params);
     }
     public Message(String type, String... params){
-        this.prefix = ":"+IRCDaemon.config.getProperty("serverName");
+        this.prefix = ":"+IRCDaemon.serverName;
         this.type = type;
         this.params = Arrays.asList(params);
 
@@ -44,6 +44,7 @@ public class Message {
     // :Name COMMAND parameter list
     // Trailing = Message
     public String getRaw(){
+        //If last parameter contains spaces, add :?
         return (prefix == null ? "" : prefix+" ")+ type+" "+String.join(" ", params);
     }
     public String getEncoded(){
