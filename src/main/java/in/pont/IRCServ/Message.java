@@ -33,7 +33,7 @@ public class Message {
         }
     }
     public Message(int type, String... params){
-        this(String.valueOf(type), params);
+        this(String.format("%03d", type), params);
     }
     public Message(String type, String... params){
         this.prefix = ":"+IRCDaemon.serverName;
