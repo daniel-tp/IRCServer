@@ -1,7 +1,7 @@
 package in.pont.IRCServ;
 
 public enum Reply {
-    RPL_WELCOME(001, ":Welcome to the Internet Relay Network %s!%s@%s"),
+    RPL_WELCOME(1, "%1$s :Welcome to the Internet Relay Network %1$s!%2$s@%3$s"),
     ERR_NONICKNAMEGIVEN(431, ":No Nickname given"),
     ERR_UNKNOWNCOMMAND(421, "%s :Unknown command"),
     ERR_NEEDMOREPARAMS(461, "%s :Not enough parameters"),
