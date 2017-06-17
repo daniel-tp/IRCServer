@@ -87,4 +87,9 @@ public class User {
     public void setRegistered(boolean set) {
         registered = set;
     }
+
+    public void quit(){
+        logger.debug("Closing channel for {}",getNickname());
+        conn.channel().close();
+    }
 }
