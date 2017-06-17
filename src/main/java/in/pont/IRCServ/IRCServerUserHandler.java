@@ -44,7 +44,8 @@ public class IRCServerUserHandler extends ChannelInboundHandlerAdapter {
 
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) {
-        cause.printStackTrace();
+        logger.error("Thrown:", cause);
+
         ctx.close();
     }
 }
