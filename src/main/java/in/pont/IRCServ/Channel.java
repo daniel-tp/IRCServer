@@ -19,12 +19,7 @@ public class Channel {
     public void join(User user){
         logger.info("Adding user {} to channel {}", user.getNickname(), name);
         joined.add(user);
-        for(User other : joined){
-            other.sendMsg(new Message(user.getUniqueID(), "JOIN", name));
-        }
 
-        sendTopic(user);
-        sendNames(user);
     }
     public void sendTopic(User user){
         logger.debug("Sending topic for channel {} to user {}", topic, user.getNickname());
@@ -50,5 +45,8 @@ public class Channel {
     }
     public boolean hasUser(User user){
         return joined.contains(user);
+    }
+    public List<User> getJoinedList(){
+        return joined;
     }
 }

@@ -34,8 +34,14 @@ public class CmdJoin extends Command {
     @Override
     public void use(User user, HashMap params) {
         for(String chanName : (String[])params.get("channels")) {
-            Channel chan =  IRCDaemon.channelMap.getOrDefault(chanName, new Channel(chanName)); // always gets a channel, new or otherwise
-            chan.addUser(user);
+            Channel chan = IRCDaemon.channelMap.computeIfAbsent(chanName, Channel::new);
+            // always gets a channel, new or otherwise
+            chan.join(user);
+            for(User other : chan.getJoinedList()){
+                other.sendMsg(new Message(user.getUniqueID(), "JOIN", chanName));
+            }
+            chan.sendTopic(user);
+            chan.sendNames(user);
         }
     }
 }
