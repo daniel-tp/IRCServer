@@ -9,7 +9,7 @@ import java.util.HashMap;
 
 public class IRCDaemon {
     public static String serverName = "TestServer";
-    public static Command[] CmdList = {new CmdNick(), new CmdUser(), new CmdQuit(), new CmdJoin()};
+    public static Command[] CmdList = {new CmdNick(), new CmdUser(), new CmdQuit(), new CmdJoin(), new CmdPart()};
     public static HashMap<String, Command> CmdMap = new HashMap<>();
     public static ArrayList<User> userList = new ArrayList<>();
     public static HashMap<String, Channel> channelMap = new HashMap<>();
