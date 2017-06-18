@@ -33,10 +33,14 @@ public class Message {
         }
     }
     public Message(int type, String... params){
-        this(String.format("%03d", type), params);
+        this(null, String.format("%03d", type), params);
     }
-    public Message(String type, String... params){
-        this.prefix = ":"+IRCDaemon.serverName;
+    public Message(String prefix, String type, String... params){
+        if(prefix == null) {
+            this.prefix = ":" + IRCDaemon.serverName;
+        }else{
+            this.prefix = ":" + prefix;
+        }
         this.type = type;
         this.params = Arrays.asList(params);
 

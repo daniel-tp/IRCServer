@@ -8,7 +8,7 @@ import java.net.InetSocketAddress;
 import java.util.HashMap;
 
 public class User {
-    final Logger logger = LoggerFactory.getLogger(IRCDaemon.class);
+    final Logger logger = LoggerFactory.getLogger(User.class);
     private String nickname = null;
     private String username = null;
     private String realname = null;
@@ -38,6 +38,7 @@ public class User {
     }
 
     public void sendWelcome() {
+        logger.debug("Sending welcome messages to {}", getNickname());
         sendMsg(Reply.RPL_WELCOME, nickname, username, hostname);
     }
 
@@ -46,7 +47,7 @@ public class User {
     }
 
     public void sendMsg(Message m) {
-        logger.info("Sending message: {}", m);
+        logger.debug("Sending message: {}", m);
         conn.channel().writeAndFlush(m);
     }
 
@@ -71,12 +72,12 @@ public class User {
     }
 
     public void setUsername(String user) {
-        logger.info("Setting username from {} to {}", username, user);
+        logger.debug("Setting username from {} to {}", username, user);
         this.username = user;
     }
 
     public void setRealname(String name) {
-        logger.info("Setting realname from {} to {}", realname, name);
+        logger.debug("Setting realname from {} to {}", realname, name);
         this.realname = name;
     }
 
@@ -91,5 +92,8 @@ public class User {
     public void quit(){
         logger.debug("Closing channel for {}",getNickname());
         conn.channel().close();
+    }
+    public String getUniqueID(){
+        return String.format("%s!%s@%s", nickname, username, hostname);
     }
 }

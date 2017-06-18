@@ -1,20 +1,18 @@
 package in.pont.IRCServ;
-import in.pont.IRCServ.cmd.CmdNick;
-import in.pont.IRCServ.cmd.CmdQuit;
-import in.pont.IRCServ.cmd.CmdUser;
+import in.pont.IRCServ.cmd.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Properties;
+
 
 public class IRCDaemon {
     public static String serverName = "TestServer";
-    public static Command[] CmdList = {new CmdNick(), new CmdUser(), new CmdQuit()};
+    public static Command[] CmdList = {new CmdNick(), new CmdUser(), new CmdQuit(), new CmdJoin()};
     public static HashMap<String, Command> CmdMap = new HashMap<>();
     public static ArrayList<User> userList = new ArrayList<>();
+    public static HashMap<String, Channel> channelMap = new HashMap<>();
     public static void main(String[] args) throws Exception {
         final Logger logger = LoggerFactory.getLogger(IRCDaemon.class);
         loadCommands();
@@ -30,6 +28,7 @@ public class IRCDaemon {
         new IRCServer(port).run();
     }
     public static void loadCommands(){
+
         for(Command c: CmdList){
             for(String s : c.hook()){
                 CmdMap.put(s, c);
