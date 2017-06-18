@@ -16,10 +16,9 @@ public class Channel {
     public Channel(String name){
         this.name = name;
     }
-    public void addUser(User user){
+    public void join(User user){
         logger.info("Adding user {} to channel {}", user.getNickname(), name);
         joined.add(user);
-
         for(User other : joined){
             other.sendMsg(new Message(user.getUniqueID(), "JOIN", name));
         }
@@ -45,7 +44,11 @@ public class Channel {
         user.sendMsg(Reply.RPL_ENDOFNAMES, user.getNickname(),name);
     }
     public void removeUser(User user){
+        //Do any messaging here?
         logger.debug("Removing user {} from channel {}", user.getNickname(), name);
         joined.remove(user);
+    }
+    public boolean hasUser(User user){
+        return joined.contains(user);
     }
 }

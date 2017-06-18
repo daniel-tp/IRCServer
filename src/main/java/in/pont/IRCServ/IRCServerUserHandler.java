@@ -35,9 +35,15 @@ public class IRCServerUserHandler extends ChannelInboundHandlerAdapter {
 
     @Override
     public void channelInactive(ChannelHandlerContext ctx){
+        //Should do QUIT here
         if(user!= null){
             logger.info("Removed {} from userlist on disconnect", user.getNickname());
             IRCDaemon.userList.remove(user);
+            for(Channel channel : IRCDaemon.channelMap.values()){
+                if(channel.hasUser(user)){
+                    channel.removeUser(user);
+                }
+            }
         }
     }
 
