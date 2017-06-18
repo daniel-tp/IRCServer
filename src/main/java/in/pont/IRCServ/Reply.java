@@ -11,7 +11,9 @@ public enum Reply {
     ERR_NEEDMOREPARAMS(461, "%s :Not enough parameters"),
     ERR_ALREADYREGISTERED(462, ":Unauthorized command (already registered)"),
     ERR_ERRONEUSNICKNAME(432, "%s :Erroneus nickname"),
+    ERR_NOTONCHANNEl(442, "%s :You're not on that channel"),
     ERR_NOSUCHCHANNEL(403, "%s :No such channel");
+
 
     final int ID;
     final String msg;
